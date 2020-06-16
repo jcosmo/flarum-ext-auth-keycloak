@@ -152,7 +152,7 @@ class KeycloakAuthController implements RequestHandlerInterface
                 // Update user
                 $this->bus->dispatch(new EditUser($localUser->id, $this->findFirstAdminUser(), $data));
             } catch (Exception $e) {
-                exit('Failed to update Flarum user: '.$e->getMessage());
+                error_log('Failed to update Flarum user: '.$e->getMessage());
             }
         }
 
@@ -211,7 +211,7 @@ class KeycloakAuthController implements RequestHandlerInterface
                         // Remove its new login provider (will be re-created right afterwards)
                         $created->loginProviders()->delete();
                     } catch (Exception $e) {
-                        exit('Failed to create Flarum user: '.$e->getMessage());
+                        error_log('Failed to create Flarum user: '.$e->getMessage());
                     }
 
                 }
